@@ -7,77 +7,17 @@
   <test thread-count="5" name="Test(failed)">
     <parameter name="browser" value="chrome"/>
     <classes>
-      <class name="tests.LoginPageTest">
-        <methods>
-          <include name="verifyLoginnew"/>
-          <include name="tearDown"/>
-          <include name="verifyLoginInvalidData"/>
-          <include name="setup"/>
-          <include name="loadConfig"/>
-        </methods>
-      </class> <!-- tests.LoginPageTest -->
       <class name="tests.AddressPageTest">
         <methods>
-          <include name="validateAddressPage"/>
           <include name="loadConfig"/>
-          <include name="validateAddressContinueButton"/>
-          <include name="validateAddressEmptyData"/>
+          <include name="validateAddressPage" invocation-numbers="0"/>
+          <include name="validateAddressContinueButton" invocation-numbers="0"/>
+          <include name="createTest"/>
+          <include name="validateAddressEmptyData" invocation-numbers="0"/>
           <include name="tearDown"/>
           <include name="setup"/>
         </methods>
       </class> <!-- tests.AddressPageTest -->
-      <class name="tests.CartPageTest">
-        <methods>
-          <include name="validateRemoveProduct"/>
-          <include name="validateContinueShippingButton"/>
-          <include name="validateCartPage"/>
-          <include name="setup"/>
-          <include name="loadConfig"/>
-          <include name="validateCartPageProductTitle"/>
-          <include name="tearDown"/>
-        </methods>
-      </class> <!-- tests.CartPageTest -->
-      <class name="tests.OrderSummaryPageTest">
-        <methods>
-          <include name="teardown"/>
-          <include name="validateMultipleProductPrice"/>
-          <include name="validateOrderSummary"/>
-          <include name="loadConfig"/>
-          <include name="validateCancelButton"/>
-          <include name="setup"/>
-        </methods>
-      </class> <!-- tests.OrderSummaryPageTest -->
-      <class name="tests.OrderConfimationPageTest">
-        <methods>
-          <include name="validateOrderConfirmationPage"/>
-          <include name="tearDown"/>
-          <include name="setup"/>
-          <include name="loadConfig"/>
-        </methods>
-      </class> <!-- tests.OrderConfimationPageTest -->
-      <class name="tests.ProductDetailPageTest">
-        <methods>
-          <include name="validateBackToProductListing"/>
-          <include name="validateProductDetail"/>
-          <include name="tearDown"/>
-          <include name="loadConfig"/>
-          <include name="setup"/>
-          <include name="validateAddToCart"/>
-        </methods>
-      </class> <!-- tests.ProductDetailPageTest -->
-      <class name="tests.ProductTest">
-        <methods>
-          <include name="setup"/>
-          <include name="verifyProductPriceDscOrder"/>
-          <include name="addToCartProductFromListing"/>
-          <include name="getProductPriceAscOrder"/>
-          <include name="verifyAllProductPrice"/>
-          <include name="tearDown"/>
-          <include name="loadConfig"/>
-          <include name="verifyAllProductTitle"/>
-          <include name="verifyDescOrderProduct"/>
-        </methods>
-      </class> <!-- tests.ProductTest -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->

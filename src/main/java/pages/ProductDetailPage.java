@@ -26,7 +26,7 @@ public class ProductDetailPage {
 	@FindBy(id = "back-to-products")
 	WebElement backToProduct;
 
-	@FindBy(xpath = "//div[@class='inventory_details_name large_size']")
+	@FindBy(xpath = "//div[@class='inventory_list']/div[1]/div[2]/div[1]/a")
 	WebElement productDetail;
 	
 	@FindBy(name="back-to-products")
@@ -58,7 +58,7 @@ public class ProductDetailPage {
 		}
             return productDetailTitle.getText();
 	}
-
+ 
 	public String productDetailProductPrice() {
 		addTocartProductfromDetail();
 		

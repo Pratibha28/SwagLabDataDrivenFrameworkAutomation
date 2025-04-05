@@ -37,6 +37,7 @@ public class LandingPage extends BaseClass {
 		action.type(usernameField, username);
 		action.type(passwordField, password);
 		action.click(loginButton, "loginButton");
+		
 		Thread.sleep(2000);
 		productPage = new ProductPage(driver);
 		return productPage;

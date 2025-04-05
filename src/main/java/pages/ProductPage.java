@@ -42,6 +42,8 @@ public class ProductPage extends BaseClass {
 	@FindBy(xpath = "//button[text()='Remove']")
 	WebElement remove;
 
+	@FindBy(xpath="//div[@class='inventory_list']/div[1]/div[2]/div[1]/a")
+	WebElement productTitle;
 	public List<WebElement> VerifyallProductTitle() {
 		// productSTitle = null;
 
@@ -112,12 +114,24 @@ public class ProductPage extends BaseClass {
 	}
 
 	
-	public ProductDetailPage clickOnProductTitle() {
+	public ProductDetailPage clickOnProductTitlenew() {
+		
+		action.click(productTitle, "ProductTitle");
+		return new ProductDetailPage(driver);
+	}
+	
+	
+public ProductDetailPage clickOnProductTitle() {
 		
 		for (int i = 0; i < productListTitle.size(); i++) {
 			if (productListTitle.get(i).getText().equalsIgnoreCase(prop.getProperty("productname"))) {
 
 				if (action.isDisplayed(driver, addToCart)) {
+					System.out.println("i am here##############");
+					System.out.println(productListTitle.get(i));
+
+					System.out.println(productListTitle.get(i).getText());
+
 					action.click(productListTitle.get(i), "productTitle");
 
 				}

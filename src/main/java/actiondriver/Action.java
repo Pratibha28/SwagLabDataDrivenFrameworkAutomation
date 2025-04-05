@@ -8,12 +8,14 @@ import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -22,7 +24,6 @@ import pages.BaseClass;
 
 public class Action extends BaseClass {
 	WebDriver driver;
-	
 	
 	
 	
@@ -65,6 +66,7 @@ public class Action extends BaseClass {
 			flag = true;
 			return true;
 		} catch (Exception e) {
+			System.out.println(e.getMessage());
 			return false;
 		} finally {
 			if (flag) {
@@ -197,6 +199,15 @@ public boolean validateExpectedURL(String url) {
 		
 	}
 	
+	public void acceptAlertMethod() {
+		if (driver == null) {
+	        System.out.println("Driver is null!");
+	        return;
+	    }
+	    driver.switchTo().alert().accept();
+
+		
+	}
 	
 	
 	
