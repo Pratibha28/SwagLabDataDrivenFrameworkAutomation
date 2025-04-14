@@ -36,14 +36,14 @@ public class AddressPageTest extends BaseClass {
 	public void tearDown() {
 
 		
-	        driver.quit();
+	        getDriver().quit();
 	    
 	    extent.flush();	}
 
 	@Test(dataProvider = "credentials", dataProviderClass = DataProviders.class)
 	public void validateAddressPage(HashMap<String, String> hashMap) throws InterruptedException {
 
-		landingPage = new LandingPage(driver);
+		landingPage = new LandingPage();
 		test.info("Launching the app and logging in");
 		try {
 			productPage = landingPage.loginApplication(hashMap.get("Username"), hashMap.get("Password"), productPage);
@@ -68,7 +68,7 @@ public class AddressPageTest extends BaseClass {
 	@Test(dataProvider = "credentials", dataProviderClass = DataProviders.class)
 	public void validateAddressEmptyData(HashMap<String, String> hashMap) throws InterruptedException {
 
-		landingPage = new LandingPage(driver);
+		landingPage = new LandingPage();
 		try {
 			productPage = landingPage.loginApplication(hashMap.get("Username"), hashMap.get("Password"), productPage);
 		} catch (InterruptedException e) {
@@ -92,7 +92,7 @@ public class AddressPageTest extends BaseClass {
 
 	@Test(dataProvider = "credentials", dataProviderClass = DataProviders.class)
 	public void validateAddressContinueButton(HashMap<String, String> hashMap) {
-		landingPage = new LandingPage(driver);
+		landingPage = new LandingPage();
 		try {
 			productPage = landingPage.loginApplication(hashMap.get("Username"), hashMap.get("Password"), productPage);
 		} catch (InterruptedException e) {

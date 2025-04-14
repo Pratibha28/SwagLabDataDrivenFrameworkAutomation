@@ -36,13 +36,13 @@ public class OrderSummaryPageTest extends BaseClass {
 	@AfterMethod
 	public void teardown() {
 
-		driver.quit();
+		getDriver().quit();
 	}
 
 	@Test(dataProvider="credentials", dataProviderClass = DataProviders.class)
 	public void validateOrderSummary(HashMap<String, String>hashMap) {
 
-		landingPage = new LandingPage(driver);
+		landingPage = new LandingPage();
 		try {
 			productPage = landingPage.loginApplication(hashMap.get("Username"), hashMap.get("Password"),
 					productPage);
@@ -67,7 +67,7 @@ public class OrderSummaryPageTest extends BaseClass {
 	@Test(dataProvider="credentials", dataProviderClass = DataProviders.class)
 	public void validateMultipleProductPrice(HashMap<String, String>hashMap) {
 
-		landingPage = new LandingPage(driver);
+		landingPage = new LandingPage();
 		try {
 			productPage = landingPage.loginApplication(hashMap.get("Username"), hashMap.get("Password"),
 					productPage);
@@ -95,7 +95,7 @@ public class OrderSummaryPageTest extends BaseClass {
 	
     @Test(dataProvider="credentials", dataProviderClass = DataProviders.class)
     public void validateCancelButton(HashMap<String, String>hashMap) {
-    	landingPage = new LandingPage(driver);
+    	landingPage = new LandingPage();
 		try {
 			productPage = landingPage.loginApplication(hashMap.get("Username"), hashMap.get("Password"),
 					productPage);

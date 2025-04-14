@@ -28,13 +28,13 @@ public class LoginPageTest extends BaseClass {
 	}
 	@AfterMethod
 	public void tearDown() {
-		driver.quit();
+		getDriver().quit();
 	}
 	
 	
 	@Test(enabled = false)
 	 public void verifyLogin() throws IOException, InterruptedException {
-		LandingPage= new LandingPage(driver);
+		LandingPage= new LandingPage();
 		productPage= LandingPage.loginApplication(prop.getProperty("username"), prop.getProperty("password"), productPage);
 		String actualURL= LandingPage.getCurrentURL();
 		String expectedURL="https://www.saucedemo.com/inventory.html";
@@ -47,7 +47,7 @@ public class LoginPageTest extends BaseClass {
 	@Test(dataProvider = "credentials", dataProviderClass = DataProviders.class)
 	 public void verifyLoginnew( HashMap<String,String> hashMapValue) throws IOException, InterruptedException {
 		System.out.println("vzxc");
-		LandingPage= new LandingPage(driver);
+		LandingPage= new LandingPage();
 		productPage= LandingPage.loginApplication(hashMapValue.get("Username"),hashMapValue.get("Password"), productPage);
 		String actualURL= LandingPage.getCurrentURL();
 		String expectedURL="https://www.saucedemo.com/inventory.html";
@@ -60,7 +60,7 @@ public class LoginPageTest extends BaseClass {
 	@Test(dataProvider = "InvalidCredentials", dataProviderClass = DataProviders.class)
 	public void verifyLoginInvalidData(HashMap<String, String> hashMapValue) throws InterruptedException {
 		
-		LandingPage= new LandingPage(driver);
+		LandingPage= new LandingPage();
 		
 		String errorMessage= LandingPage.loginWithInvalidCredential(hashMapValue.get("Username"),hashMapValue.get("Password"));
         Assert.assertEquals(errorMessage, hashMapValue.get("errorMessage"));

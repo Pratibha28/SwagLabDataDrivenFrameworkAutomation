@@ -23,13 +23,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.BaseClass;
 
 public class Action extends BaseClass {
-	WebDriver driver;
+	
 	
 	
 	
 	public boolean waitForElementToDisappear(By element){
 	    
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+			WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(5));
 
 	        wait.until((ExpectedConditions.invisibilityOfElementLocated(element)));
 	        return true;
@@ -177,14 +177,14 @@ public class Action extends BaseClass {
 	
 	
 public boolean validateExpectedURL(String url) {
-	  WebDriverWait wait= new WebDriverWait(driver, Duration.ofSeconds(10));
+	  WebDriverWait wait= new WebDriverWait(getDriver(), Duration.ofSeconds(10));
 
 		return wait.until(ExpectedConditions.urlToBe(url));
 		
 	}
 	
 	public Boolean   visibilityOfElementLocated(By element) {
-		  WebDriverWait wait= new WebDriverWait(driver, Duration.ofSeconds(10));
+		  WebDriverWait wait= new WebDriverWait(getDriver(), Duration.ofSeconds(10));
 
 		  return wait.until(ExpectedConditions.visibilityOfElementLocated(element)).isDisplayed();
 	}
@@ -193,18 +193,18 @@ public boolean validateExpectedURL(String url) {
 	
 	public List<WebElement> ListOfWebelement(By element){
 		
-		List<WebElement> list= driver.findElements(element);
+		List<WebElement> list= getDriver().findElements(element);
 		return null;
 		
 		
 	}
 	
 	public void acceptAlertMethod() {
-		if (driver == null) {
+		if (getDriver() == null) {
 	        System.out.println("Driver is null!");
 	        return;
 	    }
-	    driver.switchTo().alert().accept();
+	    getDriver().switchTo().alert().accept();
 
 		
 	}

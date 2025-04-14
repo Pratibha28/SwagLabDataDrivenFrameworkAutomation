@@ -35,13 +35,13 @@ public class CartPageTest extends BaseClass {
 
 	@AfterMethod
 	public void tearDown() {
-		driver.quit();
+		getDriver().quit();
 	}
 
 	@Test(dataProvider="credentials", dataProviderClass = DataProviders.class)
 	public void validateCartPage(HashMap<String, String>hashMap) throws InterruptedException {
 
-		 landingPage = new LandingPage(driver);
+		 landingPage = new LandingPage();
 		productPage = landingPage.loginApplication(hashMap.get("Username"), hashMap.get("Password"),
 				productPage);
 		productDetailPage = productPage.clickOnProductTitle();
@@ -57,7 +57,7 @@ public class CartPageTest extends BaseClass {
 
 	@Test(dataProvider="credentials", dataProviderClass = DataProviders.class)
 	public void validateCartPageProductTitle(HashMap<String, String>hashMap) throws InterruptedException {
-		 landingPage = new LandingPage(driver);
+		 landingPage = new LandingPage();
 		productPage = landingPage.loginApplication(hashMap.get("Username"), hashMap.get("Password"),
 				productPage);
 		productDetailPage = productPage.clickOnProductTitle();
@@ -77,7 +77,7 @@ public class CartPageTest extends BaseClass {
 	@Test(dataProvider="credentials", dataProviderClass = DataProviders.class)
 	public void validateRemoveProduct(HashMap<String, String>hashMap) throws InterruptedException {
 		
-		 landingPage= new LandingPage(driver);
+		 landingPage= new LandingPage();
 		 productPage = landingPage.loginApplication(hashMap.get("Username"), hashMap.get("Password"),
 					productPage);
 		 
@@ -98,7 +98,7 @@ public class CartPageTest extends BaseClass {
 	@Test(dataProvider="credentials", dataProviderClass = DataProviders.class)
 	public void validateContinueShippingButton(HashMap<String, String>hashMap) throws InterruptedException {
 		
-		landingPage= new LandingPage(driver);
+		landingPage= new LandingPage();
 		productPage = landingPage.loginApplication(hashMap.get("Username"), hashMap.get("Password"),
 				productPage);
 		

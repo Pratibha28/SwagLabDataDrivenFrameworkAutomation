@@ -14,10 +14,10 @@ import actiondriver.Action;
 public class ProductPage extends BaseClass {
 	Action action = new Action();
 
-	public ProductPage(WebDriver driver) {
-		this.driver = driver;
+	public ProductPage() {
+		
 
-		PageFactory.initElements(driver, this);
+		PageFactory.initElements(getDriver(), this);
 
 	}
 	
@@ -91,7 +91,7 @@ public class ProductPage extends BaseClass {
 		for (int i = 0; i < productListTitle.size(); i++) {
 			if (productListTitle.get(i).getText().equalsIgnoreCase(prop.getProperty("productname"))) {
 
-				if (action.isDisplayed(driver, addToCart)) {
+				if (action.isDisplayed(getDriver(), addToCart)) {
 					action.click(addToCart, "addtocart");
 
 				}
@@ -105,7 +105,7 @@ public class ProductPage extends BaseClass {
 		for (int i = 0; i < productListTitle.size(); i++) {
 			if (productListTitle.get(i).getText().contains(prop.getProperty("ProductsNameContain"))) {
 
-				if (action.isDisplayed(driver, addToCart)) {
+				if (action.isDisplayed(getDriver(), addToCart)) {
 					action.click(addToCart, "addtocart");
 
 				}
@@ -117,7 +117,7 @@ public class ProductPage extends BaseClass {
 	public ProductDetailPage clickOnProductTitlenew() {
 		
 		action.click(productTitle, "ProductTitle");
-		return new ProductDetailPage(driver);
+		return new ProductDetailPage();
 	}
 	
 	
@@ -126,7 +126,7 @@ public ProductDetailPage clickOnProductTitle() {
 		for (int i = 0; i < productListTitle.size(); i++) {
 			if (productListTitle.get(i).getText().equalsIgnoreCase(prop.getProperty("productname"))) {
 
-				if (action.isDisplayed(driver, addToCart)) {
+				if (action.isDisplayed(getDriver(), addToCart)) {
 					System.out.println("i am here##############");
 					System.out.println(productListTitle.get(i));
 
@@ -138,14 +138,14 @@ public ProductDetailPage clickOnProductTitle() {
 			}
 		}
 		
-		return new ProductDetailPage(driver);
+		return new ProductDetailPage();
 	}
 	
 	
 	
 	public Boolean validateAddToCart() {
 
-		return action.isDisplayed(driver, remove);
+		return action.isDisplayed(getDriver(), remove);
 
 	}
 
@@ -154,7 +154,7 @@ public ProductDetailPage clickOnProductTitle() {
 		for (int i = 0; i < productListTitle.size(); i++) {
 			if (productListTitle.get(i).getText().equalsIgnoreCase(prop.getProperty("productname"))) {
 
-				if (action.isDisplayed(driver, remove)) {
+				if (action.isDisplayed(getDriver(), remove)) {
 					action.click(remove, "remove");
 
 				}
@@ -165,12 +165,12 @@ public ProductDetailPage clickOnProductTitle() {
 
 	public Boolean validateRemove() {
 
-		return action.isDisplayed(driver, addToCart);
+		return action.isDisplayed(getDriver(), addToCart);
 
 	}
 	public CartPage clickOnCart() {
 		action.click(cart, "Cart");
-		return new CartPage(driver);
+		return new CartPage();
 		
 	}
 }
