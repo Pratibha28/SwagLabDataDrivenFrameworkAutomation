@@ -7,6 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import actiondriver.Action;
+import util.Log;
 import util.WebDriverWaitClass;
 
 public class LandingPage extends BaseClass {
@@ -32,25 +33,29 @@ public class LandingPage extends BaseClass {
 
 	public ProductPage loginApplication(String username, String password, ProductPage productPage)
 			throws InterruptedException {
+		Log.startTestCase("LoginTest");
 		// driver.findElement(By.name("user-name"));
+		Log.info("Enter username & password and login into the  account");
 		action.type(usernameField, username);
 		action.type(passwordField, password);
 		action.click(loginButton, "loginButton");
-		
+		Log.endTestCase("Test End");
 		Thread.sleep(2000);
 		productPage = new ProductPage();
 		return productPage;
 	}
 
 	public String loginWithInvalidCredential(String username, String password) {
+		Log.startTestCase("LoginTest");
 
 		action.type(usernameField, username);
 		action.type(passwordField, password);
 		action.click(loginButton, "loginButton");
 		action.visibilityOfElement(getDriver(), errorMessage, 7);
 		String message = errorMessage.getText();
+		Log.endTestCase("End Test");
 		return message;
-
+      
 	}
 
 	public String getCurrentURL() {

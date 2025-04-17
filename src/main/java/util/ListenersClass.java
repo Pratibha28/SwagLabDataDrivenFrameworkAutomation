@@ -21,7 +21,7 @@ public class ListenersClass implements ITestListener {
     ThreadLocal<ExtentTest> extentTest = new ThreadLocal<ExtentTest>();
 	@Override
 	public void onTestStart(ITestResult result) {
-		System.out.println("@@@Test is started");
+	
 		test = extent.createTest(result.getMethod().getMethodName());
 		extentTest.set(test);//unique thread id(ErrorValidationTest)->test
 		ITestListener.super.onTestStart(result);

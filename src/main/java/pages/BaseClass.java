@@ -24,6 +24,8 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
+import util.Log;
+
 public class BaseClass {
 	public static ExtentReports extent;
 	public static ExtentTest test;
@@ -39,13 +41,15 @@ public class BaseClass {
 
 	@BeforeSuite
 	public void loadConfig() throws IOException {
-
 		prop = new Properties();
 		FileInputStream fis = new FileInputStream("G:\\eclipse workplace\\SwagLabs\\Resources\\global.properties");
 		prop.load(fis);
-		ExtentSparkReporter spark = new ExtentSparkReporter("test-output/ExtentReport.html");
-		extent = new ExtentReports();
-		extent.attachReporter(spark);
+		
+		//DOMConfigurator.configure("log4j.xml");
+		org.apache.logging.log4j.Logger testLogger = org.apache.logging.log4j.LogManager.getLogger(BaseClass.class);
+		testLogger.info("Log4j2 initialized - config loaded!");
+        Log.clearLogs();
+
 	}
 
 	public static WebDriver getDriver() {
@@ -70,16 +74,13 @@ public class BaseClass {
 				.implicitlyWait(Duration.ofSeconds(Integer.parseInt(prop.getProperty("implicitWait"))));
 
 		String url = prop.getProperty("url");
-		System.out.println(url);
+		
 
 		// Launching the URL
 		getDriver().get(prop.getProperty("url"));
 
 	}
 
-	@BeforeMethod
-	public void createTest(Method method) {
-		test = extent.createTest(method.getName());
-	}
+	
 
 }

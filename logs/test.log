@@ -1,0 +1,13 @@
+2025-04-17 21:42:17 [main] INFO  util.Log - ######## This is a test log from LoginTest ########
+2025-04-17 21:42:21 [main] INFO  util.Log - ======= LoginTest TEST START =======
+2025-04-17 21:42:21 [main] INFO  util.Log - Enter username & password and login into the  account
+2025-04-17 21:42:22 [main] INFO  util.Log - ======= Test End TEST END =======
+2025-04-17 21:42:24 [main] INFO  util.Log - Validate URl
+2025-04-17 21:42:29 [main] INFO  util.Log - ======= LoginTest TEST START =======
+2025-04-17 21:42:30 [main] INFO  util.Log - ======= End Test TEST END =======
+2025-04-17 21:42:34 [main] INFO  util.Log - ======= LoginTest TEST START =======
+2025-04-17 21:42:35 [main] INFO  util.Log - ======= End Test TEST END =======
+2025-04-17 21:42:40 [main] INFO  util.Log - ======= LoginTest TEST START =======
+2025-04-17 21:42:40 [main] INFO  util.Log - Enter username & password and login into the  account
+2025-04-17 21:42:40 [main] INFO  util.Log - ======= Test End TEST END =======
+2025-04-17 21:42:42 [main] INFO  util.Log - Validate URl

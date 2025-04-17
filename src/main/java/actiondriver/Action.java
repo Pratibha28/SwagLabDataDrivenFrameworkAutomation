@@ -50,7 +50,7 @@ public class Action extends BaseClass {
 			flag = false;
 		} finally {
 			if (flag) {
-				System.out.println("Successfully entered value");
+				//System.out.println("Successfully entered value");
 			} else {
 				System.out.println("Unable to enter value");
 			}
@@ -70,7 +70,7 @@ public class Action extends BaseClass {
 			return false;
 		} finally {
 			if (flag) {
-				System.out.println("Able to click on \"" + locatorName + "\"");
+				//System.out.println("Able to click on \"" + locatorName + "\"");
 			} else {
 				System.out.println("Click Unable to click on \"" + locatorName + "\"");
 			}
