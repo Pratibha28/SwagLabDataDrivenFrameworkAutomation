@@ -8,13 +8,13 @@ import org.openqa.selenium.support.PageFactory;
 import actiondriver.Action;
 
 public class AddressPage extends BaseClass {
-	WebDriver driver;
+
 	Action action = new Action();
 
-	public AddressPage(WebDriver driver) {
+	public AddressPage() {
 
-		this.driver = driver;
-		PageFactory.initElements(driver, this);
+		
+		PageFactory.initElements(getDriver(), this);
 	}
 
 	@FindBy(xpath = "//span[text()='Checkout: Your Information']")
@@ -45,7 +45,7 @@ public class AddressPage extends BaseClass {
 		action.type(postalCode, postalcode);
 		action.click(Continue, "Continue");
 
-		action.visibilityOfElement(driver, errorMessage, 5);
+		action.visibilityOfElement(getDriver(), errorMessage, 5);
 		String errormessage = errorMessage.getText();
 		System.out.println(errormessage);
 		return errormessage;
@@ -58,7 +58,7 @@ public class AddressPage extends BaseClass {
 		action.type(postalCode, postalcode);
 		action.click(Continue, "Continue");
 
-		return new OrderSummaryPage(driver);
+		return new OrderSummaryPage();
 
 	}
 

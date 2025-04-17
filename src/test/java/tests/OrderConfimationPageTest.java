@@ -40,13 +40,13 @@ public class OrderConfimationPageTest extends BaseClass{
 	@AfterMethod
 	public void tearDown() {
 		
-		driver.quit();
+		getDriver().quit();
 	}
 	
 	
 	@Test(dataProvider="credentials", dataProviderClass = DataProviders.class)
 	public void validateOrderConfirmationPage(HashMap<String, String>hashMap) {
-		landingPage= new LandingPage(driver);
+		landingPage= new LandingPage();
 		try {
 			productPage = landingPage.loginApplication(hashMap.get("Username"), hashMap.get("Password"),
 					productPage);		} catch (InterruptedException e) {

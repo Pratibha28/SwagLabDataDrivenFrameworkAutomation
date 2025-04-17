@@ -10,7 +10,7 @@ import actiondriver.Action;
 import util.WebDriverWaitClass;
 
 public class LandingPage extends BaseClass {
-	WebDriver driver;
+	
 	Action action = new Action();
 	@FindBy(name = "user-name")
 	WebElement usernameField;
@@ -24,10 +24,9 @@ public class LandingPage extends BaseClass {
 	@FindBy(xpath = "//div[@class='login-box']//h3")
 	WebElement errorMessage;
 
-	public LandingPage(WebDriver driver) {
-		System.out.println("in");
-		this.driver = driver;
-		PageFactory.initElements(driver, this);
+	public LandingPage() {
+		
+		PageFactory.initElements(getDriver(), this);
 
 	}
 
@@ -39,7 +38,7 @@ public class LandingPage extends BaseClass {
 		action.click(loginButton, "loginButton");
 		
 		Thread.sleep(2000);
-		productPage = new ProductPage(driver);
+		productPage = new ProductPage();
 		return productPage;
 	}
 
@@ -48,7 +47,7 @@ public class LandingPage extends BaseClass {
 		action.type(usernameField, username);
 		action.type(passwordField, password);
 		action.click(loginButton, "loginButton");
-		action.visibilityOfElement(driver, errorMessage, 7);
+		action.visibilityOfElement(getDriver(), errorMessage, 7);
 		String message = errorMessage.getText();
 		return message;
 
@@ -56,7 +55,7 @@ public class LandingPage extends BaseClass {
 
 	public String getCurrentURL() {
 
-		String url = action.getCurrentURL(driver);
+		String url = action.getCurrentURL(getDriver());
 		return url;
 	}
 
