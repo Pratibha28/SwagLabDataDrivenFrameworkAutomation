@@ -39,12 +39,12 @@ public class ProductTest extends BaseClass {
  
 	@AfterMethod
 	public void tearDown() {
-		driver.quit();
+		getDriver().quit();
 	}
 
 	@Test(dataProvider="credentials", dataProviderClass = DataProviders.class)
 	public void verifyAllProductTitle(HashMap<String, String>hashMap) throws IOException, InterruptedException {
-		landingPage = new LandingPage(driver);
+		landingPage = new LandingPage();
 		productPage = landingPage.loginApplication(hashMap.get("Username"), hashMap.get("Password"),
 				productPage);
 		List<String> expectedProductTitle = new ArrayList<String>();
@@ -61,7 +61,7 @@ public class ProductTest extends BaseClass {
 
 	@Test(dataProvider="credentials", dataProviderClass = DataProviders.class)
 	public void verifyAllProductPrice(HashMap<String, String>hashMap) throws InterruptedException {
-		landingPage = new LandingPage(driver);
+		landingPage = new LandingPage();
 		productPage = landingPage.loginApplication(hashMap.get("Username"), hashMap.get("Password"),
 				productPage);
 		List<String> expectedProductprice = new ArrayList<String>();
@@ -78,7 +78,7 @@ public class ProductTest extends BaseClass {
 
 	@Test(dataProvider="credentials", dataProviderClass = DataProviders.class)
 	public void verifyDescOrderProduct(HashMap<String, String>hashMap) throws InterruptedException {
-		landingPage = new LandingPage(driver);
+		landingPage = new LandingPage();
 		productPage = landingPage.loginApplication(hashMap.get("Username"), hashMap.get("Password"),
 				productPage);
 		List<WebElement> descProductTitle = productPage.VerifyDecOrderProductTitle();
@@ -101,7 +101,7 @@ public class ProductTest extends BaseClass {
 
 	@Test(dataProvider="credentials", dataProviderClass = DataProviders.class)
 	public void getProductPriceAscOrder(HashMap<String, String>hashMap) throws InterruptedException {
-		landingPage = new LandingPage(driver);
+		landingPage = new LandingPage();
 		productPage = landingPage.loginApplication(hashMap.get("Username"), hashMap.get("Password"),
 				productPage);		
 		
@@ -131,7 +131,7 @@ public class ProductTest extends BaseClass {
 	@Test(dataProvider="credentials", dataProviderClass = DataProviders.class)
 	public void verifyProductPriceDscOrder(HashMap<String, String>hashMap) throws InterruptedException {
 		
-		landingPage= new LandingPage(driver);
+		landingPage= new LandingPage();
 		productPage = landingPage.loginApplication(hashMap.get("Username"), hashMap.get("Password"),
 				productPage);		List<WebElement> dscProductPrice= productPage.verifyProductPriceDscOrder();
 		List actuallist= new ArrayList();
@@ -155,7 +155,7 @@ public class ProductTest extends BaseClass {
 	@Test(dataProvider="credentials", dataProviderClass = DataProviders.class)
 	public void addToCartProductFromListing(HashMap<String, String>hashMap) throws InterruptedException {
 		
-		landingPage= new LandingPage(driver);
+		landingPage= new LandingPage();
 		productPage = landingPage.loginApplication(hashMap.get("Username"), hashMap.get("Password"),
 				productPage);		productPage.addTocartProductfromList();
 		Thread.sleep(2000);

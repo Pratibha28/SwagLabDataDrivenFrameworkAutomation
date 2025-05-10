@@ -15,6 +15,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
@@ -23,10 +24,12 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
+import util.Log;
+
 public class BaseClass {
 	public static ExtentReports extent;
-    public static ExtentTest test;
-	
+	public static ExtentTest test;
+
 //	Write a Test Script to automate www.saucedemo.com using Page Object Model
 //	● Create Maven Project
 //	● Use TestNG
@@ -34,63 +37,50 @@ public class BaseClass {
 
 	public static Properties prop;
 	// Declare ThreadLocal Driver
-		public static WebDriver driver;
+	public static ThreadLocal<RemoteWebDriver> driver = new ThreadLocal<RemoteWebDriver>();
 
 	@BeforeSuite
 	public void loadConfig() throws IOException {
-
 		prop = new Properties();
 		FileInputStream fis = new FileInputStream("G:\\eclipse workplace\\SwagLabs\\Resources\\global.properties");
 		prop.load(fis);
-		ExtentSparkReporter spark = new ExtentSparkReporter("test-output/ExtentReport.html");
-        extent = new ExtentReports();
-        extent.attachReporter(spark);
-	}
+		
+		//DOMConfigurator.configure("log4j.xml");
+		org.apache.logging.log4j.Logger testLogger = org.apache.logging.log4j.LogManager.getLogger(BaseClass.class);
+		testLogger.info("Log4j2 initialized - config loaded!");
+        Log.clearLogs();
 
-	
-
-
-	public void launchApp(String BrowserType) {
-
-	    if (BrowserType.equalsIgnoreCase("chrome")) {
-	        // ChromeOptions setup to disable password alerts
-	        ChromeOptions options = new ChromeOptions();
-
-	        // Disable Chrome password manager and security alerts
-	        options.addArguments("--disable-password-manager-reauthentication");
-	        options.addArguments("--disable-features=PasswordManagerRedesign");
-	        options.addArguments("--disable-features=PasswordLeakDetection");
-	        options.addArguments("--disable-save-password-bubble");
-
-	        Map<String, Object> prefs = new HashMap<>();
-	        prefs.put("credentials_enable_service", false);
-	        prefs.put("profile.password_manager_enabled", false);
-	        options.setExperimentalOption("prefs", prefs);
-
-	        driver = new ChromeDriver(options);
-
-	    } else if (BrowserType.equalsIgnoreCase("firefox")) {
-	        driver = new FirefoxDriver();
-	    }
-
-	    driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
-	    driver.manage().window().maximize();
-	    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
-	    String url = prop.getProperty("url");
-	    System.out.println(url);
-	    driver.get(url);
 	}
 
 	public static WebDriver getDriver() {
 		// Get Driver from threadLocalmap
-		return driver;
-	}
-	
-	@BeforeMethod
-	public void createTest(Method method) {
-	    test = extent.createTest(method.getName());
+		return driver.get();
 	}
 
+	public void launchApp(String BrowserType) {
+
+		if (BrowserType.equalsIgnoreCase("chrome")) {
+			// ChromeOptions setup to disable password alerts
+			driver.set(new ChromeDriver());
+		} else if (BrowserType.equalsIgnoreCase("firefox")) {
+			driver.set(new FirefoxDriver());
+		}
+		// Maximize the screen
+		getDriver().manage().window().maximize();
+		// Delete all the cookies
+		getDriver().manage().deleteAllCookies();
+		// Implicit TimeOuts
+		getDriver().manage().timeouts()
+				.implicitlyWait(Duration.ofSeconds(Integer.parseInt(prop.getProperty("implicitWait"))));
+
+		String url = prop.getProperty("url");
 		
+
+		// Launching the URL
+		getDriver().get(prop.getProperty("url"));
+
+	}
+
+	
+
 }

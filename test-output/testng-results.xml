@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="5" passed="5" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2025-04-17T21:42:10 IST" name="Suite" finished-at="2025-04-17T21:42:43 IST" duration-ms="32529">
+    <groups>
+    </groups>
+    <test started-at="2025-04-17T21:42:10 IST" name="Test" finished-at="2025-04-17T21:42:43 IST" duration-ms="32529">
+      <class name="tests.LoginPageTest">
+        <test-method is-config="true" signature="loadConfig()[pri:0, instance:tests.LoginPageTest@63f34b70]" started-at="2025-04-17T21:42:10 IST" name="loadConfig" finished-at="2025-04-17T21:42:10 IST" duration-ms="36" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loadConfig -->
+        <test-method is-config="true" signature="setup(java.lang.String)[pri:0, instance:tests.LoginPageTest@63f34b70]" started-at="2025-04-17T21:42:10 IST" name="setup" finished-at="2025-04-17T21:42:17 IST" duration-ms="6241" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="verifyLogging()[pri:0, instance:tests.LoginPageTest@63f34b70]" started-at="2025-04-17T21:42:17 IST" name="verifyLogging" finished-at="2025-04-17T21:42:17 IST" duration-ms="41" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyLogging -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.LoginPageTest@63f34b70]" started-at="2025-04-17T21:42:17 IST" name="tearDown" finished-at="2025-04-17T21:42:17 IST" duration-ms="445" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup(java.lang.String)[pri:0, instance:tests.LoginPageTest@63f34b70]" started-at="2025-04-17T21:42:17 IST" name="setup" finished-at="2025-04-17T21:42:21 IST" duration-ms="3506" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="verifyLogin()[pri:0, instance:tests.LoginPageTest@63f34b70]" started-at="2025-04-17T21:42:21 IST" name="verifyLogin" finished-at="2025-04-17T21:42:24 IST" duration-ms="3188" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyLogin -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.LoginPageTest@63f34b70]" started-at="2025-04-17T21:42:24 IST" name="tearDown" finished-at="2025-04-17T21:42:24 IST" duration-ms="397" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup(java.lang.String)[pri:0, instance:tests.LoginPageTest@63f34b70]" started-at="2025-04-17T21:42:26 IST" name="setup" finished-at="2025-04-17T21:42:29 IST" duration-ms="3434" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="verifyLoginInvalidData(java.util.HashMap)[pri:0, instance:tests.LoginPageTest@63f34b70]" started-at="2025-04-17T21:42:29 IST" name="verifyLoginInvalidData" data-provider="InvalidCredentials" finished-at="2025-04-17T21:42:30 IST" duration-ms="944" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[{errorMessage=Epic sadface: Username and password do not match any user in this service, Username=standard_users, Password=secret_sauce}]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyLoginInvalidData -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.LoginPageTest@63f34b70]" started-at="2025-04-17T21:42:30 IST" name="tearDown" finished-at="2025-04-17T21:42:31 IST" duration-ms="419" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup(java.lang.String)[pri:0, instance:tests.LoginPageTest@63f34b70]" started-at="2025-04-17T21:42:31 IST" name="setup" finished-at="2025-04-17T21:42:34 IST" duration-ms="3730" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="verifyLoginInvalidData(java.util.HashMap)[pri:0, instance:tests.LoginPageTest@63f34b70]" started-at="2025-04-17T21:42:34 IST" name="verifyLoginInvalidData" data-provider="InvalidCredentials" finished-at="2025-04-17T21:42:35 IST" duration-ms="894" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[{errorMessage=Epic sadface: Sorry, this user has been locked out., Username=locked_out_user, Password=secret_sauce}]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyLoginInvalidData -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.LoginPageTest@63f34b70]" started-at="2025-04-17T21:42:35 IST" name="tearDown" finished-at="2025-04-17T21:42:36 IST" duration-ms="407" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup(java.lang.String)[pri:0, instance:tests.LoginPageTest@63f34b70]" started-at="2025-04-17T21:42:36 IST" name="setup" finished-at="2025-04-17T21:42:40 IST" duration-ms="3606" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[chrome]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method signature="verifyLoginnew(java.util.HashMap)[pri:0, instance:tests.LoginPageTest@63f34b70]" started-at="2025-04-17T21:42:40 IST" name="verifyLoginnew" data-provider="credentials" finished-at="2025-04-17T21:42:42 IST" duration-ms="2951" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[{Username=standard_user, Password=secret_sauce}]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- verifyLoginnew -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.LoginPageTest@63f34b70]" started-at="2025-04-17T21:42:42 IST" name="tearDown" finished-at="2025-04-17T21:42:43 IST" duration-ms="369" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- tests.LoginPageTest -->
+    </test> <!-- Test -->
+  </suite> <!-- Suite -->
+</testng-results>

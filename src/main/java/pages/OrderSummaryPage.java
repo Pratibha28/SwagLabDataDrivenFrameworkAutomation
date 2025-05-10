@@ -11,13 +11,12 @@ import org.openqa.selenium.support.PageFactory;
 import actiondriver.Action;
 
 public class OrderSummaryPage extends BaseClass {
-	WebDriver driver;
 	Action actions = new Action();
 
-	public OrderSummaryPage(WebDriver driver) {
+	public OrderSummaryPage() {
 
-		this.driver = driver;
-		PageFactory.initElements(driver, this);
+		
+		PageFactory.initElements(getDriver(), this);
 	}
 
 	@FindBy(xpath = "//span[@class='title']")
@@ -41,7 +40,7 @@ public class OrderSummaryPage extends BaseClass {
 	
 	public Boolean validateOrderSummaryPage() {
 
-		return actions.isDisplayed(driver, title);
+		return actions.isDisplayed(getDriver(), title);
 	}
 	
 	public double getUnitPrice() {
@@ -95,13 +94,13 @@ public class OrderSummaryPage extends BaseClass {
 	
 	public boolean validateCancelButton() {
 		
-		return actions.isDisplayed(driver, cancel);
+		return actions.isDisplayed(getDriver(), cancel);
 	}
 	
 	public OrderConfrimationPage clickOnFinish() {
 		
 		actions.click(finish, "Finish");
 		
-		return new OrderConfrimationPage(driver);
+		return new OrderConfrimationPage();
 	}
 }

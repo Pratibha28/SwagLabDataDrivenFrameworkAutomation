@@ -25,7 +25,7 @@ public class ExcelLibrary {
 		this.path=path;
 		try {
 			fis = new FileInputStream(path);
-			System.out.println(fis.toString());
+			//System.out.println(fis.toString());
 			workbook = new XSSFWorkbook(fis);
 			sheet = workbook.getSheetAt(0);
 			fis.close();

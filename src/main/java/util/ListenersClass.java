@@ -15,13 +15,13 @@ import actiondriver.Action;
 import pages.BaseClass;
 
 public class ListenersClass implements ITestListener {
-    //Action action= new Action(driver);
+    Action action= new Action();
     ExtentTest test;
 	ExtentReports extent = ExtentReporterNG.getReportObject();
     ThreadLocal<ExtentTest> extentTest = new ThreadLocal<ExtentTest>();
 	@Override
 	public void onTestStart(ITestResult result) {
-		System.out.println("@@@Test is started");
+	
 		test = extent.createTest(result.getMethod().getMethodName());
 		extentTest.set(test);//unique thread id(ErrorValidationTest)->test
 		ITestListener.super.onTestStart(result);
@@ -41,8 +41,8 @@ public class ListenersClass implements ITestListener {
 			   try {
 			   test.log(Status.FAIL, MarkupHelper.createLabel(result.getName() + " - Test case Failed", ExtentColor.RED));
 			   test.log(Status.FAIL, MarkupHelper.createLabel(result.getThrowable() + " - Test case Failed", ExtentColor.RED));
-			   //String imgPath= action.screenShot(BaseClass.getDriver(), result.getName());
-			  // test.fail("Screenshot is attched", MediaEntityBuilder.createScreenCaptureFromPath(imgPath).build());
+			   String imgPath= action.screenShot(BaseClass.getDriver(), result.getName());
+			   test.fail("Screenshot is attched", MediaEntityBuilder.createScreenCaptureFromPath(imgPath).build());
 			   
 			   }catch(Exception e) {
 			   

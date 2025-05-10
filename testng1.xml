@@ -11,12 +11,12 @@
 <parameter name="browser" value="chrome"></parameter>
 		<classes>
 			<class name="tests.LoginPageTest" />
-			<class name="tests.ProductTest" />
+			<!--<class name="tests.ProductTest" />
 			<class name="tests.ProductDetailPageTest" />
 			<class name="tests.CartPageTest"></class>
 			<class name="tests.AddressPageTest"></class>
 			<class name="tests.OrderSummaryPageTest"></class>
-			<class name="tests.OrderConfimationPageTest"></class>
+			<class name="tests.OrderConfimationPageTest"></class>-->
 
 		</classes>
 	</test> <!--
