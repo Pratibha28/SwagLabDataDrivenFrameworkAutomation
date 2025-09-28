@@ -1,6 +1,6 @@
 services:
   selenium-hub:
-    image: selenium/hub:4.25.0          # ✅ use a valid version (latest stable as of Sep 2025)
+    image: selenium/hub:4.25.0          # use a valid version (latest stable Sep 2025)
     container_name: selenium-hub
     ports:
       - "4444:4444"
@@ -11,7 +11,7 @@ services:
       retries: 12
 
   chrome-node:
-    image: selenium/node-chrome:4.25.0  # ✅ same version as hub
+    image: selenium/node-chrome:4.25.0  # same version as hub
     depends_on:
       selenium-hub:
         condition: service_healthy
@@ -21,4 +21,4 @@ services:
       - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
     shm_size: "2g"
     volumes:
-      - /dev/shm:/dev/shm
+      - /dev/shm:/dev/shm   # ✅ fixed typo (was /dev/shmpipeline)
