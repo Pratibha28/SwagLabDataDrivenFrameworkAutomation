@@ -565,3 +565,6 @@
 2025-09-19 21:09:13 [TestNG-test-Test-1] INFO  util.Log - Enter username & password and login into the  account
 2025-09-19 21:09:14 [TestNG-test-Test-1] INFO  util.Log - ======= Test End TEST END =======
 2025-09-19 21:09:16 [TestNG-test-Test-1] INFO  util.Log - Validate URl
+2025-09-28 17:32:42 [main] INFO  org.testng.internal.Utils - [TestNG] Running:
+  G:\eclipse workplace\SwagLabs\testngaddressforextentreport.xml
+

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results retried="2" ignored="2" total="9" passed="4" failed="1" skipped="0">
+<testng-results ignored="0" total="5" passed="0" failed="0" skipped="5">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-09-19T21:08:05 IST" name="Suite" finished-at="2025-09-19T21:09:16 IST" duration-ms="70585">
+  <suite started-at="2025-09-28T17:32:42 IST" name="Suite" finished-at="2025-09-28T17:32:44 IST" duration-ms="2154">
     <groups>
     </groups>
-    <test started-at="2025-09-19T21:08:05 IST" name="Test" finished-at="2025-09-19T21:09:16 IST" duration-ms="70585">
+    <test started-at="2025-09-28T17:32:42 IST" name="Test" finished-at="2025-09-28T17:32:44 IST" duration-ms="2154">
       <class name="tests.LoginPageTest">
-        <test-method is-config="true" signature="loadConfig(java.lang.String)[pri:0, instance:tests.LoginPageTest@5990e6c5]" started-at="2025-09-19T21:08:05 IST" name="loadConfig" finished-at="2025-09-19T21:08:05 IST" duration-ms="29" status="PASS">
+        <test-method is-config="true" signature="loadConfig(java.lang.String)[pri:0, instance:tests.LoginPageTest@70fab835]" started-at="2025-09-28T17:32:42 IST" name="loadConfig" finished-at="2025-09-28T17:32:42 IST" duration-ms="34" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -18,7 +18,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- loadConfig -->
-        <test-method is-config="true" signature="setup(java.lang.String)[pri:0, instance:tests.LoginPageTest@5990e6c5]" started-at="2025-09-19T21:08:05 IST" name="setup" finished-at="2025-09-19T21:08:17 IST" duration-ms="11005" status="PASS">
+        <test-method is-config="true" signature="setup(java.lang.String)[pri:0, instance:tests.LoginPageTest@70fab835]" started-at="2025-09-28T17:32:42 IST" name="setup" finished-at="2025-09-28T17:32:42 IST" duration-ms="2" status="FAIL">
           <params>
             <param index="0">
               <value>
@@ -26,48 +26,27 @@
               </value>
             </param>
           </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method signature="verifyLogging()[pri:0, instance:tests.LoginPageTest@5990e6c5]" started-at="2025-09-19T21:08:17 IST" name="verifyLogging" finished-at="2025-09-19T21:08:17 IST" duration-ms="22" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- verifyLogging -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.LoginPageTest@5990e6c5]" started-at="2025-09-19T21:08:17 IST" name="tearDown" finished-at="2025-09-19T21:08:17 IST" duration-ms="235" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup(java.lang.String)[pri:0, instance:tests.LoginPageTest@5990e6c5]" started-at="2025-09-19T21:08:17 IST" name="setup" finished-at="2025-09-19T21:08:25 IST" duration-ms="7988" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[chrome]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setup -->
-        <test-method retried="true" signature="verifyLogin()[pri:0, instance:tests.LoginPageTest@5990e6c5]" started-at="2025-09-19T21:08:25 IST" name="verifyLogin" finished-at="2025-09-19T21:08:28 IST" duration-ms="2890" status="SKIP">
-          <exception class="java.lang.AssertionError">
+          <exception class="java.lang.Error">
             <message>
-              <![CDATA[expected [https://www.saucedemo.com/inventory.html] but found [https://www.saucedemo.com/]]]>
+              <![CDATA[Unresolved compilation problem: 
+Unhandled exception type MalformedURLException
+]]>
             </message>
             <full-stacktrace>
-              <![CDATA[java.lang.AssertionError: expected [https://www.saucedemo.com/inventory.html] but found [https://www.saucedemo.com/]
-at org.testng.Assert.fail(Assert.java:111)
-at org.testng.Assert.failNotEquals(Assert.java:1578)
-at org.testng.Assert.assertEqualsImpl(Assert.java:150)
-at org.testng.Assert.assertEquals(Assert.java:132)
-at org.testng.Assert.assertEquals(Assert.java:656)
-at org.testng.Assert.assertEquals(Assert.java:666)
-at tests.LoginPageTest.verifyLogin(LoginPageTest.java:52)
+              <![CDATA[java.lang.Error: Unresolved compilation problem: 
+Unhandled exception type MalformedURLException
+
+at tests.LoginPageTest.setup(LoginPageTest.java:29)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
 at java.base/java.lang.reflect.Method.invoke(Method.java:568)
 at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
-at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethodConsideringTimeout(MethodInvocationHelper.java:71)
+at org.testng.internal.invokers.ConfigInvoker.invokeConfigurationMethod(ConfigInvoker.java:400)
+at org.testng.internal.invokers.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:333)
+at org.testng.internal.invokers.TestInvoker.runConfigMethods(TestInvoker.java:833)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:600)
 at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
 at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
 at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
@@ -82,47 +61,34 @@ at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecut
 at java.base/java.lang.Thread.run(Thread.java:842)
 ]]>
             </full-stacktrace>
-          </exception> <!-- java.lang.AssertionError -->
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- verifyLogin -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.LoginPageTest@5990e6c5]" started-at="2025-09-19T21:08:28 IST" name="tearDown" finished-at="2025-09-19T21:08:28 IST" duration-ms="260" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup(java.lang.String)[pri:0, instance:tests.LoginPageTest@5990e6c5]" started-at="2025-09-19T21:08:28 IST" name="setup" finished-at="2025-09-19T21:08:32 IST" duration-ms="4024" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[chrome]]>
-              </value>
-            </param>
-          </params>
+          </exception> <!-- java.lang.Error -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method retried="true" signature="verifyLogin()[pri:0, instance:tests.LoginPageTest@5990e6c5]" started-at="2025-09-19T21:08:32 IST" name="verifyLogin" finished-at="2025-09-19T21:08:37 IST" duration-ms="5381" status="SKIP">
-          <exception class="java.lang.AssertionError">
+        <test-method signature="verifyLogging()[pri:0, instance:tests.LoginPageTest@70fab835]" started-at="2025-09-28T17:32:42 IST" name="verifyLogging" finished-at="2025-09-28T17:32:42 IST" duration-ms="0" status="SKIP">
+          <exception class="java.lang.Error">
             <message>
-              <![CDATA[expected [https://www.saucedemo.com/inventory.html] but found [https://www.saucedemo.com/]]]>
+              <![CDATA[Unresolved compilation problem: 
+Unhandled exception type MalformedURLException
+]]>
             </message>
             <full-stacktrace>
-              <![CDATA[java.lang.AssertionError: expected [https://www.saucedemo.com/inventory.html] but found [https://www.saucedemo.com/]
-at org.testng.Assert.fail(Assert.java:111)
-at org.testng.Assert.failNotEquals(Assert.java:1578)
-at org.testng.Assert.assertEqualsImpl(Assert.java:150)
-at org.testng.Assert.assertEquals(Assert.java:132)
-at org.testng.Assert.assertEquals(Assert.java:656)
-at org.testng.Assert.assertEquals(Assert.java:666)
-at tests.LoginPageTest.verifyLogin(LoginPageTest.java:52)
+              <![CDATA[java.lang.Error: Unresolved compilation problem: 
+Unhandled exception type MalformedURLException
+
+at tests.LoginPageTest.setup(LoginPageTest.java:29)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
 at java.base/java.lang.reflect.Method.invoke(Method.java:568)
 at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
-at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
-at org.testng.internal.invokers.TestInvoker.retryFailed(TestInvoker.java:269)
-at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:76)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethodConsideringTimeout(MethodInvocationHelper.java:71)
+at org.testng.internal.invokers.ConfigInvoker.invokeConfigurationMethod(ConfigInvoker.java:400)
+at org.testng.internal.invokers.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:333)
+at org.testng.internal.invokers.TestInvoker.runConfigMethods(TestInvoker.java:833)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:600)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
 at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
 at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
 at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
@@ -135,47 +101,42 @@ at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecut
 at java.base/java.lang.Thread.run(Thread.java:842)
 ]]>
             </full-stacktrace>
-          </exception> <!-- java.lang.AssertionError -->
+          </exception> <!-- java.lang.Error -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- verifyLogin -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.LoginPageTest@5990e6c5]" started-at="2025-09-19T21:08:37 IST" name="tearDown" finished-at="2025-09-19T21:08:38 IST" duration-ms="243" status="PASS">
+        </test-method> <!-- verifyLogging -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.LoginPageTest@70fab835]" started-at="2025-09-28T17:32:42 IST" name="tearDown" finished-at="2025-09-28T17:32:42 IST" duration-ms="0" status="SKIP">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup(java.lang.String)[pri:0, instance:tests.LoginPageTest@5990e6c5]" started-at="2025-09-19T21:08:38 IST" name="setup" finished-at="2025-09-19T21:08:45 IST" duration-ms="7648" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[chrome]]>
-              </value>
-            </param>
-          </params>
+        <test-method is-config="true" signature="setup(java.lang.String)[pri:0, instance:tests.LoginPageTest@70fab835]" started-at="2025-09-28T17:32:42 IST" name="setup" finished-at="2025-09-28T17:32:42 IST" duration-ms="0" status="SKIP">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="verifyLogin()[pri:0, instance:tests.LoginPageTest@5990e6c5]" started-at="2025-09-19T21:08:45 IST" name="verifyLogin" finished-at="2025-09-19T21:08:48 IST" duration-ms="2669" status="FAIL">
-          <exception class="java.lang.AssertionError">
+        <test-method signature="verifyLogin()[pri:0, instance:tests.LoginPageTest@70fab835]" started-at="2025-09-28T17:32:42 IST" name="verifyLogin" finished-at="2025-09-28T17:32:42 IST" duration-ms="1" status="SKIP">
+          <exception class="java.lang.Error">
             <message>
-              <![CDATA[expected [https://www.saucedemo.com/inventory.html] but found [https://www.saucedemo.com/]]]>
+              <![CDATA[Unresolved compilation problem: 
+Unhandled exception type MalformedURLException
+]]>
             </message>
             <full-stacktrace>
-              <![CDATA[java.lang.AssertionError: expected [https://www.saucedemo.com/inventory.html] but found [https://www.saucedemo.com/]
-at org.testng.Assert.fail(Assert.java:111)
-at org.testng.Assert.failNotEquals(Assert.java:1578)
-at org.testng.Assert.assertEqualsImpl(Assert.java:150)
-at org.testng.Assert.assertEquals(Assert.java:132)
-at org.testng.Assert.assertEquals(Assert.java:656)
-at org.testng.Assert.assertEquals(Assert.java:666)
-at tests.LoginPageTest.verifyLogin(LoginPageTest.java:52)
+              <![CDATA[java.lang.Error: Unresolved compilation problem: 
+Unhandled exception type MalformedURLException
+
+at tests.LoginPageTest.setup(LoginPageTest.java:29)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
 at java.base/java.lang.reflect.Method.invoke(Method.java:568)
 at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
-at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
-at org.testng.internal.invokers.TestInvoker.retryFailed(TestInvoker.java:269)
-at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:76)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethodConsideringTimeout(MethodInvocationHelper.java:71)
+at org.testng.internal.invokers.ConfigInvoker.invokeConfigurationMethod(ConfigInvoker.java:400)
+at org.testng.internal.invokers.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:333)
+at org.testng.internal.invokers.TestInvoker.runConfigMethods(TestInvoker.java:833)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:600)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
 at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
 at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
 at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
@@ -188,26 +149,19 @@ at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecut
 at java.base/java.lang.Thread.run(Thread.java:842)
 ]]>
             </full-stacktrace>
-          </exception> <!-- java.lang.AssertionError -->
+          </exception> <!-- java.lang.Error -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- verifyLogin -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.LoginPageTest@5990e6c5]" started-at="2025-09-19T21:08:48 IST" name="tearDown" finished-at="2025-09-19T21:08:49 IST" duration-ms="260" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.LoginPageTest@70fab835]" started-at="2025-09-28T17:32:42 IST" name="tearDown" finished-at="2025-09-28T17:32:42 IST" duration-ms="0" status="SKIP">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup(java.lang.String)[pri:0, instance:tests.LoginPageTest@5990e6c5]" started-at="2025-09-19T21:08:50 IST" name="setup" finished-at="2025-09-19T21:08:57 IST" duration-ms="6956" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[chrome]]>
-              </value>
-            </param>
-          </params>
+        <test-method is-config="true" signature="setup(java.lang.String)[pri:0, instance:tests.LoginPageTest@70fab835]" started-at="2025-09-28T17:32:44 IST" name="setup" finished-at="2025-09-28T17:32:44 IST" duration-ms="0" status="SKIP">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="verifyLoginInvalidData(java.util.HashMap)[pri:0, instance:tests.LoginPageTest@5990e6c5]" started-at="2025-09-19T21:08:57 IST" name="verifyLoginInvalidData" data-provider="InvalidCredentials" finished-at="2025-09-19T21:08:57 IST" duration-ms="668" status="PASS">
+        <test-method signature="verifyLoginInvalidData(java.util.HashMap)[pri:0, instance:tests.LoginPageTest@70fab835]" started-at="2025-09-28T17:32:44 IST" name="verifyLoginInvalidData" data-provider="InvalidCredentials" finished-at="2025-09-28T17:32:44 IST" duration-ms="0" status="SKIP">
           <params>
             <param index="0">
               <value>
@@ -215,25 +169,54 @@ at java.base/java.lang.Thread.run(Thread.java:842)
               </value>
             </param>
           </params>
+          <exception class="java.lang.Error">
+            <message>
+              <![CDATA[Unresolved compilation problem: 
+Unhandled exception type MalformedURLException
+]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.Error: Unresolved compilation problem: 
+Unhandled exception type MalformedURLException
+
+at tests.LoginPageTest.setup(LoginPageTest.java:29)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethodConsideringTimeout(MethodInvocationHelper.java:71)
+at org.testng.internal.invokers.ConfigInvoker.invokeConfigurationMethod(ConfigInvoker.java:400)
+at org.testng.internal.invokers.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:333)
+at org.testng.internal.invokers.TestInvoker.runConfigMethods(TestInvoker.java:833)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:600)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+at org.testng.internal.thread.graph.TestNGFutureTask.run(TestNGFutureTask.java:22)
+at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+at java.base/java.lang.Thread.run(Thread.java:842)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.Error -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- verifyLoginInvalidData -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.LoginPageTest@5990e6c5]" started-at="2025-09-19T21:08:57 IST" name="tearDown" finished-at="2025-09-19T21:08:58 IST" duration-ms="228" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.LoginPageTest@70fab835]" started-at="2025-09-28T17:32:44 IST" name="tearDown" finished-at="2025-09-28T17:32:44 IST" duration-ms="0" status="SKIP">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup(java.lang.String)[pri:0, instance:tests.LoginPageTest@5990e6c5]" started-at="2025-09-19T21:08:58 IST" name="setup" finished-at="2025-09-19T21:09:05 IST" duration-ms="7211" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[chrome]]>
-              </value>
-            </param>
-          </params>
+        <test-method is-config="true" signature="setup(java.lang.String)[pri:0, instance:tests.LoginPageTest@70fab835]" started-at="2025-09-28T17:32:44 IST" name="setup" finished-at="2025-09-28T17:32:44 IST" duration-ms="0" status="SKIP">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="verifyLoginInvalidData(java.util.HashMap)[pri:0, instance:tests.LoginPageTest@5990e6c5]" started-at="2025-09-19T21:09:05 IST" name="verifyLoginInvalidData" data-provider="InvalidCredentials" finished-at="2025-09-19T21:09:06 IST" duration-ms="777" status="PASS">
+        <test-method signature="verifyLoginInvalidData(java.util.HashMap)[pri:0, instance:tests.LoginPageTest@70fab835]" started-at="2025-09-28T17:32:44 IST" name="verifyLoginInvalidData" data-provider="InvalidCredentials" finished-at="2025-09-28T17:32:44 IST" duration-ms="0" status="SKIP">
           <params>
             <param index="0">
               <value>
@@ -241,25 +224,54 @@ at java.base/java.lang.Thread.run(Thread.java:842)
               </value>
             </param>
           </params>
+          <exception class="java.lang.Error">
+            <message>
+              <![CDATA[Unresolved compilation problem: 
+Unhandled exception type MalformedURLException
+]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.Error: Unresolved compilation problem: 
+Unhandled exception type MalformedURLException
+
+at tests.LoginPageTest.setup(LoginPageTest.java:29)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethodConsideringTimeout(MethodInvocationHelper.java:71)
+at org.testng.internal.invokers.ConfigInvoker.invokeConfigurationMethod(ConfigInvoker.java:400)
+at org.testng.internal.invokers.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:333)
+at org.testng.internal.invokers.TestInvoker.runConfigMethods(TestInvoker.java:833)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:600)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+at org.testng.internal.thread.graph.TestNGFutureTask.run(TestNGFutureTask.java:22)
+at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+at java.base/java.lang.Thread.run(Thread.java:842)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.Error -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- verifyLoginInvalidData -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.LoginPageTest@5990e6c5]" started-at="2025-09-19T21:09:06 IST" name="tearDown" finished-at="2025-09-19T21:09:06 IST" duration-ms="310" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.LoginPageTest@70fab835]" started-at="2025-09-28T17:32:44 IST" name="tearDown" finished-at="2025-09-28T17:32:44 IST" duration-ms="0" status="SKIP">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setup(java.lang.String)[pri:0, instance:tests.LoginPageTest@5990e6c5]" started-at="2025-09-19T21:09:06 IST" name="setup" finished-at="2025-09-19T21:09:13 IST" duration-ms="6999" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[chrome]]>
-              </value>
-            </param>
-          </params>
+        <test-method is-config="true" signature="setup(java.lang.String)[pri:0, instance:tests.LoginPageTest@70fab835]" started-at="2025-09-28T17:32:44 IST" name="setup" finished-at="2025-09-28T17:32:44 IST" duration-ms="0" status="SKIP">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="verifyLoginnew(java.util.HashMap)[pri:0, instance:tests.LoginPageTest@5990e6c5]" started-at="2025-09-19T21:09:13 IST" name="verifyLoginnew" data-provider="credentials" finished-at="2025-09-19T21:09:16 IST" duration-ms="2675" status="PASS">
+        <test-method signature="verifyLoginnew(java.util.HashMap)[pri:0, instance:tests.LoginPageTest@70fab835]" started-at="2025-09-28T17:32:44 IST" name="verifyLoginnew" data-provider="credentials" finished-at="2025-09-28T17:32:44 IST" duration-ms="0" status="SKIP">
           <params>
             <param index="0">
               <value>
@@ -267,10 +279,46 @@ at java.base/java.lang.Thread.run(Thread.java:842)
               </value>
             </param>
           </params>
+          <exception class="java.lang.Error">
+            <message>
+              <![CDATA[Unresolved compilation problem: 
+Unhandled exception type MalformedURLException
+]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.Error: Unresolved compilation problem: 
+Unhandled exception type MalformedURLException
+
+at tests.LoginPageTest.setup(LoginPageTest.java:29)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethodConsideringTimeout(MethodInvocationHelper.java:71)
+at org.testng.internal.invokers.ConfigInvoker.invokeConfigurationMethod(ConfigInvoker.java:400)
+at org.testng.internal.invokers.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:333)
+at org.testng.internal.invokers.TestInvoker.runConfigMethods(TestInvoker.java:833)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:600)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+at org.testng.internal.thread.graph.TestNGFutureTask.run(TestNGFutureTask.java:22)
+at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+at java.base/java.lang.Thread.run(Thread.java:842)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.Error -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- verifyLoginnew -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.LoginPageTest@5990e6c5]" started-at="2025-09-19T21:09:16 IST" name="tearDown" finished-at="2025-09-19T21:09:16 IST" duration-ms="280" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:tests.LoginPageTest@70fab835]" started-at="2025-09-28T17:32:44 IST" name="tearDown" finished-at="2025-09-28T17:32:44 IST" duration-ms="0" status="SKIP">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->

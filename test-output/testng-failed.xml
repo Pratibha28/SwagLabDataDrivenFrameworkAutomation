@@ -10,10 +10,13 @@
     <classes>
       <class name="tests.LoginPageTest">
         <methods>
+          <include name="verifyLoginnew"/>
           <include name="tearDown"/>
-          <include name="loadConfig"/>
+          <include name="verifyLoginInvalidData"/>
           <include name="setup"/>
+          <include name="loadConfig"/>
           <include name="verifyLogin"/>
+          <include name="verifyLogging"/>
         </methods>
       </class> <!-- tests.LoginPageTest -->
     </classes>

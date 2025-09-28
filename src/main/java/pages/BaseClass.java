@@ -77,7 +77,7 @@ public class BaseClass {
      * @throws MalformedURLException 
      */
 
-	public void launchApp(String browserType) throws MalformedURLException {
+	public void launchApp(String browserType) {
 		
 		
 		 // Helper to resolve property: system prop > config file > default
@@ -123,7 +123,12 @@ public class BaseClass {
                 throw new IllegalArgumentException("Unsupported browser: " + browserType);
             }
             
-            driver.set(new RemoteWebDriver(new URL(seleniumGridUrl), caps));
+            try {
+				driver.set(new RemoteWebDriver(new URL(seleniumGridUrl), caps));
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
             
         }else {
         	// Local execution
