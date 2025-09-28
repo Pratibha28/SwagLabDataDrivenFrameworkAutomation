@@ -25,20 +25,16 @@ pipeline {
       }
     }
 
-    stage('Stop existing Selenium containers') {
+    stage('Stop existing Grid') {
       when { expression { return params.START_GRID } }
       steps {
-        echo "🛑 Checking for and stopping existing selenium containers..."
+        echo "🛑 Stopping any existing selenium containers before starting new Grid..."
         bat '''
-          docker ps --filter "name=selenium" --format "{{.Names}}" > running.txt || echo. > running.txt
-          for /F "usebackq delims=" %%c in ("running.txt") do (
-            if not "%%c"=="" (
-              echo Stopping container %%c
-              docker stop %%c || echo Failed to stop %%c
-              docker rm %%c || echo Failed to rm %%c
-            )
+          for /F "tokens=*" %%c in ('docker ps -q --filter "name=selenium"') do (
+            echo Stopping container %%c
+            docker stop %%c
+            docker rm %%c
           )
-          del running.txt
         '''
       }
     }
@@ -91,7 +87,7 @@ pipeline {
 
       script {
         if (params.START_GRID) {
-          echo "🛑 Stopping Selenium Grid (compose down)"
+          echo "🛑 Shutting down Selenium Grid (compose down)"
           bat """
             docker compose version >nul 2>&1
             IF %ERRORLEVEL% EQU 0 (
