@@ -28,7 +28,7 @@ pipeline {
                       -Denv=qa ^
                       -Dbrowser=chrome ^
                       -DrunOnGrid=false ^
-                      -Dheadless=false
+                      -Dheadless=true
                 '''
             }
             post {
