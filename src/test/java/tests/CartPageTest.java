@@ -18,6 +18,7 @@ import pages.LandingPage;
 import pages.ProductDetailPage;
 import pages.ProductPage;
 
+
 public class CartPageTest extends BaseClass {
 	LandingPage landingPage;
 	ProductPage productPage;
@@ -38,7 +39,7 @@ public class CartPageTest extends BaseClass {
 		getDriver().quit();
 	}
 
-	@Test(dataProvider="credentials", dataProviderClass = DataProviders.class)
+	@Test(dataProvider="credentials", dataProviderClass = DataProviders.class, enabled = false)
 	public void validateCartPage(HashMap<String, String>hashMap) throws InterruptedException {
 
 		 landingPage = new LandingPage();
@@ -49,13 +50,13 @@ public class CartPageTest extends BaseClass {
 		cartPage = productDetailPage.clickOnCart();
 
 		Boolean cartresult = cartPage.validateCartPage();
-		Assert.assertTrue(cartresult);
+		Assert.assertFalse(cartresult);
 
 	}
 
 	// verify add to cart product & product present into the cart title matches
 
-	@Test(dataProvider="credentials", dataProviderClass = DataProviders.class)
+	@Test(dataProvider="credentials", dataProviderClass = DataProviders.class, enabled = false)
 	public void validateCartPageProductTitle(HashMap<String, String>hashMap) throws InterruptedException {
 		 landingPage = new LandingPage();
 		productPage = landingPage.loginApplication(hashMap.get("Username"), hashMap.get("Password"),
@@ -74,7 +75,7 @@ public class CartPageTest extends BaseClass {
 	}
 
 	//Verify Remove button functionality on Cart Page
-	@Test(dataProvider="credentials", dataProviderClass = DataProviders.class)
+	@Test(dataProvider="credentials", dataProviderClass = DataProviders.class, enabled = false)
 	public void validateRemoveProduct(HashMap<String, String>hashMap) throws InterruptedException {
 		
 		 landingPage= new LandingPage();

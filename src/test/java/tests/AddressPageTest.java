@@ -38,24 +38,22 @@ public class AddressPageTest extends BaseClass {
 		
 	        getDriver().quit();
 	    
-	    extent.flush();	}
+	}
 
-	@Test(dataProvider = "credentials", dataProviderClass = DataProviders.class)
+	@Test(dataProvider = "credentials", 
+	     dataProviderClass = DataProviders.class,
+	     description = "TC020-Validate Address PAge")
 	public void validateAddressPage(HashMap<String, String> hashMap) throws InterruptedException {
 
 		landingPage = new LandingPage();
-		test.info("Launching the app and logging in");
+		
 		try {
 			productPage = landingPage.loginApplication(hashMap.get("Username"), hashMap.get("Password"), productPage);
-			test.pass("Login successful");
 		} catch (InterruptedException e) {
 			e.printStackTrace();
-			test.fail("Login failed due to exception: " + e.getMessage());
 		} 
-		test.info("Navigating to Product Detail Page");
 		productDetailPage = productPage.clickOnProductTitle();
 
-		test.info("Adding product to cart");
 		productDetailPage.addTocartProductfromDetail();
 		cartPage = productDetailPage.clickOnCart();
 		addressPage = cartPage.clickOnChekout();
@@ -65,7 +63,9 @@ public class AddressPageTest extends BaseClass {
 		Assert.assertTrue(flag);
 	}
 
-	@Test(dataProvider = "credentials", dataProviderClass = DataProviders.class)
+	@Test(dataProvider = "credentials", 
+		     dataProviderClass = DataProviders.class,
+		     description = "TC021-Validate Address PAge with Empty data")
 	public void validateAddressEmptyData(HashMap<String, String> hashMap) throws InterruptedException {
 
 		landingPage = new LandingPage();
@@ -90,7 +90,9 @@ public class AddressPageTest extends BaseClass {
 
 	}
 
-	@Test(dataProvider = "credentials", dataProviderClass = DataProviders.class)
+	@Test(dataProvider = "credentials", 
+		     dataProviderClass = DataProviders.class,
+		     description = "TC022-Validate Address page Continue Button testcase")
 	public void validateAddressContinueButton(HashMap<String, String> hashMap) {
 		landingPage = new LandingPage();
 		try {
@@ -106,7 +108,6 @@ public class AddressPageTest extends BaseClass {
 				prop.getProperty("postal"));
 		Boolean result = orderSummaryPage.validateOrderSummaryPage();
 		Assert.assertTrue(result);
-		test.pass("Navigated to Order Summary Page successfully");
 
 	}
 

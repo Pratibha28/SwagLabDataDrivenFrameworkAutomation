@@ -27,7 +27,7 @@ public class ProductPage extends BaseClass {
 	@FindBy(xpath = "//select[@class='product_sort_container']")
 	WebElement select;
 
-	@FindBy(xpath = "//div[@class='inventory_item_name ']")
+	@FindBy(xpath = "//div[@class='inventory_item']//div[@class='inventory_item_label']//div[@class='inventory_item_name']")
 	List<WebElement> productListTitle;
 
 	@FindBy(xpath = "//div[@class='inventory_item_desc']")

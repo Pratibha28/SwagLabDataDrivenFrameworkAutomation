@@ -133,7 +133,9 @@ public class ProductTest extends BaseClass {
 		
 		landingPage= new LandingPage();
 		productPage = landingPage.loginApplication(hashMap.get("Username"), hashMap.get("Password"),
-				productPage);		List<WebElement> dscProductPrice= productPage.verifyProductPriceDscOrder();
+				productPage);		
+		
+		List<WebElement> dscProductPrice= productPage.verifyProductPriceDscOrder();
 		List actuallist= new ArrayList();
 		for (int i = 0; i < dscProductPrice.size(); i++) {
 			String data= dscProductPrice.get(i).getText();
@@ -157,7 +159,9 @@ public class ProductTest extends BaseClass {
 		
 		landingPage= new LandingPage();
 		productPage = landingPage.loginApplication(hashMap.get("Username"), hashMap.get("Password"),
-				productPage);		productPage.addTocartProductfromList();
+				productPage);		
+		
+		productPage.addTocartProductfromList();
 		Thread.sleep(2000);
 		boolean result= productPage.validateAddToCart();
 		Assert.assertTrue(result);

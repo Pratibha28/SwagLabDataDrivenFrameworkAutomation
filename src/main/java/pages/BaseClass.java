@@ -1,34 +1,24 @@
 package pages;
 
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.lang.reflect.Method;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.time.Duration;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Properties;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.testng.ITestContext;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 
-import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.reporter.ExtentSparkReporter;
-
-import util.Log;
 
 public class BaseClass {
-	public static ExtentReports extent;
-	public static ExtentTest test;
 
 //	Write a Test Script to automate www.saucedemo.com using Page Object Model
 //	● Create Maven Project
@@ -37,50 +27,147 @@ public class BaseClass {
 
 	public static Properties prop;
 	// Declare ThreadLocal Driver
-	public static ThreadLocal<RemoteWebDriver> driver = new ThreadLocal<RemoteWebDriver>();
-
+	public static ThreadLocal<RemoteWebDriver> driver = new ThreadLocal<>();
+	
+	/**
+     * Load environment-specific properties into util.ConfigReader.
+     * Priority for 'env' selection:
+     * 1) TestNG parameter (envFromTestNG)
+     * 2) Maven/System property (-Denv=...)
+     * 3) default "qa"
+     */
+     @Parameters("env")
 	@BeforeSuite
-	public void loadConfig() throws IOException {
+	public void loadConfig(String envFromTestNG) throws IOException {
+    	 String mavenEnv = System.getProperty("env");
+    	
+ 	    String finalEnv;
+
+ 	    if (envFromTestNG != null && !envFromTestNG.isEmpty()) {
+ 	        finalEnv = envFromTestNG;       // 🔑 Priority 1: TestNG XML param
+ 	    } else if (mavenEnv != null && !mavenEnv.isEmpty()) {
+ 	        finalEnv = mavenEnv;            // 🔑 Priority 2: Maven -Denv or surefire
+ 	    } else {
+ 	        finalEnv = "qa";                // 🔑 Priority 3: fallback
+ 	    }
+
+ 	    System.out.println("✅ Environment Loaded: " + finalEnv);
+
 		prop = new Properties();
-		FileInputStream fis = new FileInputStream("G:\\eclipse workplace\\SwagLabs\\Resources\\global.properties");
-		prop.load(fis);
-		
-		//DOMConfigurator.configure("log4j.xml");
-		org.apache.logging.log4j.Logger testLogger = org.apache.logging.log4j.LogManager.getLogger(BaseClass.class);
-		testLogger.info("Log4j2 initialized - config loaded!");
-        Log.clearLogs();
+		prop = util.ConfigReader.loadProperties(finalEnv);
 
 	}
 
-	public static WebDriver getDriver() {
+	public static RemoteWebDriver getDriver() {
 		// Get Driver from threadLocalmap
 		return driver.get();
 	}
 
-	public void launchApp(String BrowserType) {
 
-		if (BrowserType.equalsIgnoreCase("chrome")) {
-			// ChromeOptions setup to disable password alerts
-			driver.set(new ChromeDriver());
-		} else if (BrowserType.equalsIgnoreCase("firefox")) {
-			driver.set(new FirefoxDriver());
-		}
-		// Maximize the screen
-		getDriver().manage().window().maximize();
-		// Delete all the cookies
-		getDriver().manage().deleteAllCookies();
-		// Implicit TimeOuts
-		getDriver().manage().timeouts()
-				.implicitlyWait(Duration.ofSeconds(Integer.parseInt(prop.getProperty("implicitWait"))));
+    /**
+     * Launch application. Browser name expected from TestNG param or Maven -Dbrowser=...
+     * This method gives precedence to System properties for:
+     * - runOnGrid
+     * - headless
+     * - implicitWait
+     * - seleniumGridUrl
+     * - baseURL
+     *
+     * If system props are absent, values are read from loaded properties file.
+     * @throws MalformedURLException 
+     */
 
-		String url = prop.getProperty("url");
+	public void launchApp(String browserType) throws MalformedURLException {
 		
+		
+		 // Helper to resolve property: system prop > config file > default
+        String sysRunOnGrid = System.getProperty("runOnGrid");
+        String sysHeadless = System.getProperty("headless");
+        String sysImplicitWait = System.getProperty("implicitWait");
+        String sysSeleniumGridUrl = System.getProperty("seleniumGridUrl");
+        String sysBaseURL = System.getProperty("baseURL");
+        
+        String propRunOnGrid = util.ConfigReader.getProperties("runOnGrid");
+        String propHeadless = util.ConfigReader.getProperties("headless");
+        String propImplicitWait = util.ConfigReader.getProperties("implicitWait");
+        String propSeleniumGridUrl = util.ConfigReader.getProperties("seleniumGridUrl");
+        String propBaseURL = util.ConfigReader.getProperties("baseURL");
 
-		// Launching the URL
-		getDriver().get(prop.getProperty("url"));
+        
+        boolean runOnGrid = Boolean.parseBoolean(firstNonNull(sysRunOnGrid, propRunOnGrid, "false"));
+        boolean headless = Boolean.parseBoolean(firstNonNull(sysHeadless, propHeadless, "true"));
+        long implicitWaitSeconds = Long.parseLong(firstNonNull(sysImplicitWait, propImplicitWait, "10"));
+        String seleniumGridUrl = firstNonNull(sysSeleniumGridUrl, propSeleniumGridUrl, "");
+        String baseURL = firstNonNull(sysBaseURL, propBaseURL, "");
+        
+        if (runOnGrid) {
+            if (seleniumGridUrl.isEmpty()) {
+                throw new IllegalStateException("seleniumGridUrl must be provided (system prop or properties file) for grid runs");
+            }
 
-	}
+            DesiredCapabilities caps = new DesiredCapabilities();
+            
+            if ("chrome".equalsIgnoreCase(browserType)) {
+                ChromeOptions chromeOptions = new ChromeOptions();
+                if (headless) chromeOptions.addArguments("--headless=new");
+                chromeOptions.addArguments("--no-sandbox", "--disable-dev-shm-usage");
+                caps.merge(chromeOptions);
+                caps.setBrowserName("chrome");
+                
+            }  else if ("firefox".equalsIgnoreCase(browserType)) {
+                FirefoxOptions firefoxOptions = new FirefoxOptions();
+                if (headless) firefoxOptions.addArguments("-headless");
+                caps.merge(firefoxOptions);
+                caps.setBrowserName("firefox");
+            } else {
+                throw new IllegalArgumentException("Unsupported browser: " + browserType);
+            }
+            
+            driver.set(new RemoteWebDriver(new URL(seleniumGridUrl), caps));
+            
+        }else {
+        	// Local execution
+	    if (browserType.equalsIgnoreCase("chrome")) {
+	       // WebDriverManager.chromedriver().setup();
+	        ChromeOptions options= new ChromeOptions();
+	        options.addArguments("--headless");
+	        driver.set(new ChromeDriver(options));
+	    } else if (browserType.equalsIgnoreCase("firefox")) {
+	    	
+	    	FirefoxOptions options= new FirefoxOptions();
+	    	options.addArguments("--headless");
+	        //WebDriverManager.firefoxdriver().setup();
+	        driver.set(new FirefoxDriver(options));
+	    }
 
+	    // Common setup
+        getDriver().manage().window().maximize();
+        getDriver().manage().deleteAllCookies();
+        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(implicitWaitSeconds));
+
+        if (baseURL == null || baseURL.isEmpty()) {
+            throw new IllegalStateException("baseURL must be provided either via -DbaseURL or in properties file");
+        }
+        getDriver().get(baseURL);
+	}}
 	
-
+	// helper: return first non-null and non-empty string among a, b, else defaultVal
+    private String firstNonNull(String a, String b, String defaultVal) {
+        if (a != null && !a.isEmpty()) return a;
+        if (b != null && !b.isEmpty()) return b;
+        return defaultVal;
+    }
+    
+    @AfterMethod(alwaysRun = true)
+    public void tearDown() {
+        try {
+            if (getDriver() != null) {
+                getDriver().quit();
+            }
+        } catch (Exception e) {
+            System.err.println("Error while quitting driver: " + e.getMessage());
+        } finally {
+            driver.remove();
+        }
+    }
 }

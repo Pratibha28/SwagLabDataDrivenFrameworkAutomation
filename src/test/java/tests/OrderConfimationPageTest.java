@@ -17,7 +17,7 @@ import pages.OrderConfrimationPage;
 import pages.OrderSummaryPage;
 import pages.ProductDetailPage;
 import pages.ProductPage;
-import util.Retry;
+
 
 public class OrderConfimationPageTest extends BaseClass{
 	LandingPage landingPage;
