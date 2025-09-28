@@ -1,0 +1,28 @@
+version: "3.8"
+
+services:
+  selenium-hub:
+    image: selenium/hub:4.14.0
+    container_name: selenium-hub
+    ports:
+      - "4444:4444"
+    environment:
+      - SE_OPTS=-timeout 60 -sessionTimeout 3m
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:4444/status || exit 1"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+
+  chrome-node:
+    image: selenium/node-chrome:4.14.0
+    depends_on:
+      selenium-hub:
+        condition: service_healthy
+    environment:
+      - SE_EVENT_BUS_HOST=selenium-hub
+      - SE_EVENT_BUS_PUBLISH_PORT=4442
+      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+    shm_size: "2g"
+    volumes:
+      - /dev/shm:/dev/shm
