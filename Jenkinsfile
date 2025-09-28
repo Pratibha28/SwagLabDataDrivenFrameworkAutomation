@@ -24,8 +24,8 @@ pipeline {
                 // Run TestNG suite locally
                 bat '''
                     mvn test ^
-                      -Dsurefire.suiteXmlFiles=testng.xml ^
-                      -Denv=dev ^
+                      -Dsurefire.suiteXmlFiles=testngaddressforextentreport.xml ^
+                      -Denv=qa ^
                       -Dbrowser=chrome ^
                       -DrunOnGrid=false ^
                       -Dheadless=false
