@@ -7,7 +7,9 @@ pipeline {
     }
 
     parameters {
-        booleanParam(name: 'START_GRID', defaultValue: true, description: 'Start selenium grid via docker-compose before tests')
+        booleanParam(name: 'START_GRID', defaultValue: false, description: 'Start selenium grid via docker-compose before tests')
+        string(name: 'COMPOSE_PATH', defaultValue: 'selenium-grid\\docker-compose.yml', description: 'Path to docker-compose file relative to workspace')
+        string(name: 'SELENIUM_GRID_URL', defaultValue: 'http://localhost:4444/wd/hub', description: 'Grid URL to run tests against')
     }
 
     stages {
@@ -23,36 +25,39 @@ pipeline {
             }
         }
 
-        stage('Start Grid') {
+        stage('Start Grid (optional)') {
             when { expression { return params.START_GRID } }
             steps {
-                echo "🚀 Starting Selenium Grid (docker-compose)..."
-                // Run docker compose (v2) or docker-compose (v1) depending on what you have
-                bat '''
-                    docker compose version >nul 2>&1
-                    IF %ERRORLEVEL% EQU 0 (
-                      docker compose -f selenium-grid\\docker-compose.yml up -d
-                    ) ELSE (
-                      docker-compose -f selenium-grid\\docker-compose.yml up -d
-                    )
-                '''
-                // small wait for hub & node to be ready
-                bat 'powershell -Command "Start-Sleep -Seconds 10"'
+                echo "🚀 Starting Selenium Grid from ${params.COMPOSE_PATH}"
+                bat """
+                  if not exist "${params.COMPOSE_PATH}" (
+                    echo ERROR: Compose file not found at ${params.COMPOSE_PATH}
+                    exit /b 1
+                  )
+                """
+                bat """
+                  docker compose version >nul 2>&1
+                  IF %ERRORLEVEL% EQU 0 (
+                    docker compose -f ${params.COMPOSE_PATH} up -d
+                  ) ELSE (
+                    docker-compose -f ${params.COMPOSE_PATH} up -d
+                  )
+                """
+                bat 'powershell -Command "Start-Sleep -Seconds 8"'
             }
         }
 
         stage('Test') {
             steps {
-                // Run TestNG suite on Selenium Grid
-                bat '''
+                bat """
                     mvn test ^
                       -Dsurefire.suiteXmlFiles=testngaddressforextentreport.xml ^
                       -Denv=qa ^
                       -Dbrowser=chrome ^
                       -DrunOnGrid=true ^
-                      -DseleniumGridUrl=http://localhost:4444/wd/hub ^
+                      -DseleniumGridUrl=${params.SELENIUM_GRID_URL} ^
                       -Dheadless=true
-                '''
+                """
             }
             post {
                 always {
@@ -69,14 +74,14 @@ pipeline {
             script {
                 if (params.START_GRID) {
                     echo "🛑 Stopping Selenium Grid..."
-                    bat '''
-                        docker compose version >nul 2>&1
-                        IF %ERRORLEVEL% EQU 0 (
-                          docker compose -f selenium-grid\\docker-compose.yml down --volumes --remove-orphans
-                        ) ELSE (
-                          docker-compose -f selenium-grid\\docker-compose.yml down --volumes --remove-orphans
-                        )
-                    '''
+                    bat """
+                      docker compose version >nul 2>&1
+                      IF %ERRORLEVEL% EQU 0 (
+                        docker compose -f ${params.COMPOSE_PATH} down --volumes --remove-orphans
+                      ) ELSE (
+                        docker-compose -f ${params.COMPOSE_PATH} down --volumes --remove-orphans
+                      )
+                    """
                 } else {
                     echo "START_GRID=false → skipping Grid shutdown"
                 }
