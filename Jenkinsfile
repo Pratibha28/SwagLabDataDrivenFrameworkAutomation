@@ -25,16 +25,32 @@ pipeline {
       }
     }
 
-    stage('Stop existing Grid') {
+    stage('Stop existing Grid (safe)') {
       when { expression { return params.START_GRID } }
       steps {
-        echo "🛑 Stopping any existing selenium containers before starting new Grid..."
+        echo "🛑 Safely stopping any existing Selenium containers (no-op if none)..."
+        // This block is written carefully so it never returns a non-zero exit code when there are no containers
         bat '''
-          for /F "tokens=*" %%c in ('docker ps -q --filter "name=selenium"') do (
-            echo Stopping container %%c
-            docker stop %%c
-            docker rm %%c
+          REM list container ids whose name contains "selenium" into running.txt (may be empty)
+          docker ps -q --filter "name=selenium" > running.txt 2>nul || echo. > running.txt
+
+          REM check if running.txt has any content
+          set FILESIZE=0
+          for %%I in (running.txt) do set FILESIZE=%%~zI
+
+          if %FILESIZE% EQU 0 (
+            echo No selenium containers running. Nothing to stop.
+          ) else (
+            echo Found selenium container ids:
+            type running.txt
+            for /F "usebackq tokens=*" %%c in ("running.txt") do (
+              echo Attempting to stop container %%c ...
+              docker stop %%c || echo "Warning: docker stop failed for %%c (it may have already exited)"
+              docker rm %%c   >nul 2>&1 || echo "Note: docker rm returned non-zero for %%c (might be already removed)"
+            )
           )
+
+          del running.txt 2>nul || echo.
         '''
       }
     }
@@ -52,9 +68,9 @@ pipeline {
         bat """
           docker compose version >nul 2>&1
           IF %ERRORLEVEL% EQU 0 (
-            docker compose -f ${params.COMPOSE_PATH} up -d
+             docker compose -f ${params.COMPOSE_PATH} up -d
           ) ELSE (
-            docker-compose -f ${params.COMPOSE_PATH} up -d
+             docker-compose -f ${params.COMPOSE_PATH} up -d
           )
         """
         bat 'powershell -Command "Start-Sleep -Seconds 8"'
@@ -87,7 +103,7 @@ pipeline {
 
       script {
         if (params.START_GRID) {
-          echo "🛑 Shutting down Selenium Grid (compose down)"
+          echo "🛑 Bringing down Grid if we started it (best-effort)"
           bat """
             docker compose version >nul 2>&1
             IF %ERRORLEVEL% EQU 0 (
@@ -97,9 +113,12 @@ pipeline {
             )
           """
         } else {
-          echo "ℹ️ START_GRID=false → skipping Grid shutdown"
+          echo "START_GRID=false → skipping Grid shutdown"
         }
       }
+    }
+    failure {
+      echo "❌ Build failed - check console output above for details"
     }
   }
 }
