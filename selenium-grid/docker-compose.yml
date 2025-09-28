@@ -1,21 +1,17 @@
-version: "3.8"
-
 services:
   selenium-hub:
-    image: selenium/hub:4.14.0
+    image: selenium/hub:4.25.0          # ✅ use a valid version (latest stable as of Sep 2025)
     container_name: selenium-hub
     ports:
       - "4444:4444"
-    environment:
-      - SE_OPTS=-timeout 60 -sessionTimeout 3m
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:4444/status || exit 1"]
+      test: ["CMD-SHELL", "curl -f http://localhost:4444/status || exit 1"]
       interval: 5s
       timeout: 3s
       retries: 12
 
   chrome-node:
-    image: selenium/node-chrome:4.14.0
+    image: selenium/node-chrome:4.25.0  # ✅ same version as hub
     depends_on:
       selenium-hub:
         condition: service_healthy
