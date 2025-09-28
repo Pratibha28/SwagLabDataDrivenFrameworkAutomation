@@ -7,13 +7,9 @@ pipeline {
   }
 
   parameters {
-    booleanParam(name: 'START_GRID', defaultValue: true, description: 'Try to start grid if not already running')
+    booleanParam(name: 'START_GRID', defaultValue: true, description: 'Start grid via docker-compose')
     string(name: 'COMPOSE_PATH', defaultValue: 'selenium-grid\\docker-compose.yml', description: 'Path to docker-compose file')
-    string(name: 'SELENIUM_GRID_URL', defaultValue: 'http://localhost:4444/wd/hub', description: 'Grid URL to use for tests')
-  }
-
-  environment {
-    SKIP_START_GRID = 'false'
+    string(name: 'SELENIUM_GRID_URL', defaultValue: 'http://localhost:4444/wd/hub', description: 'Grid URL for tests')
   }
 
   stages {
@@ -29,25 +25,26 @@ pipeline {
       }
     }
 
-    stage('Detect existing Grid') {
+    stage('Stop existing Selenium containers') {
+      when { expression { return params.START_GRID } }
       steps {
-        script {
-          def out = bat(script: 'docker ps --format "{{.Names}} {{.Image}}"', returnStdout: true).trim()
-          echo "docker ps output:\n${out}"
-
-          if (out.toLowerCase().contains('selenium')) {
-            env.SKIP_START_GRID = 'true'
-            echo "✅ Existing Selenium container detected → skipping Grid startup"
-          } else {
-            env.SKIP_START_GRID = 'false'
-            echo "ℹ️ No existing Selenium container detected → will start Grid if START_GRID=true"
-          }
-        }
+        echo "🛑 Checking for and stopping existing selenium containers..."
+        bat '''
+          docker ps --filter "name=selenium" --format "{{.Names}}" > running.txt || echo. > running.txt
+          for /F "usebackq delims=" %%c in ("running.txt") do (
+            if not "%%c"=="" (
+              echo Stopping container %%c
+              docker stop %%c || echo Failed to stop %%c
+              docker rm %%c || echo Failed to rm %%c
+            )
+          )
+          del running.txt
+        '''
       }
     }
 
-    stage('Start Grid (conditional)') {
-      when { expression { return params.START_GRID && env.SKIP_START_GRID == 'false' } }
+    stage('Start Grid') {
+      when { expression { return params.START_GRID } }
       steps {
         echo "🚀 Starting Selenium Grid using compose file: ${params.COMPOSE_PATH}"
         bat """
@@ -59,9 +56,9 @@ pipeline {
         bat """
           docker compose version >nul 2>&1
           IF %ERRORLEVEL% EQU 0 (
-             docker compose -f ${params.COMPOSE_PATH} up -d
+            docker compose -f ${params.COMPOSE_PATH} up -d
           ) ELSE (
-             docker-compose -f ${params.COMPOSE_PATH} up -d
+            docker-compose -f ${params.COMPOSE_PATH} up -d
           )
         """
         bat 'powershell -Command "Start-Sleep -Seconds 8"'
@@ -93,7 +90,7 @@ pipeline {
       archiveArtifacts artifacts: 'target/ExtentReports.html, target/screenshots/*.png', allowEmptyArchive: true
 
       script {
-        if (params.START_GRID && env.SKIP_START_GRID == 'false') {
+        if (params.START_GRID) {
           echo "🛑 Stopping Selenium Grid (compose down)"
           bat """
             docker compose version >nul 2>&1
@@ -104,12 +101,9 @@ pipeline {
             )
           """
         } else {
-          echo "ℹ️ Skipping Grid shutdown (we didn’t start it here)"
+          echo "ℹ️ START_GRID=false → skipping Grid shutdown"
         }
       }
-    }
-    failure {
-      echo "❌ Build failed - check console for details"
     }
   }
 }
