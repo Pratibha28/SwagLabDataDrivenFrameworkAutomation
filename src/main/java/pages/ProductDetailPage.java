@@ -7,14 +7,14 @@ import org.openqa.selenium.support.PageFactory;
 
 import actiondriver.Action;
 
-public class ProductDetailPage {
-	WebDriver driver;
+public class ProductDetailPage extends BaseClass {
+	
 	Action action = new Action();
 
-	public ProductDetailPage(WebDriver driver) {
+	public ProductDetailPage() {
 
-		this.driver = driver;
-		PageFactory.initElements(driver, this);
+		
+		PageFactory.initElements(getDriver(), this);
 	}
 
 	@FindBy(xpath = "//button[text()='Add to cart']")
@@ -47,12 +47,12 @@ public class ProductDetailPage {
 	
 	
 	public Boolean validateProductdetail() {
-		return action.isDisplayed(driver, productDetail);
+		return action.isDisplayed(getDriver(), productDetail);
 	}
 
 	public String  addTocartProductfromDetail() {
 
-		if (action.isDisplayed(driver, addToCart)) {
+		if (action.isDisplayed(getDriver(), addToCart)) {
 			action.click(addToCart, "addtocart");
 			
 		}
@@ -70,13 +70,13 @@ public class ProductDetailPage {
 	
 	public Boolean validateAddToCart() {
 
-		return action.isDisplayed(driver, remove);
+		return action.isDisplayed(getDriver(), remove);
 
 	}
 
 	public void removeProductFromCart() {
 
-		if (action.isDisplayed(driver, remove)) {
+		if (action.isDisplayed(getDriver(), remove)) {
 			action.click(remove, "remove");
 
 		}
@@ -84,7 +84,7 @@ public class ProductDetailPage {
 
 	public Boolean validateRemove() {
 
-		return action.isDisplayed(driver, addToCart);
+		return action.isDisplayed(getDriver(), addToCart);
 
 	}
 	
@@ -95,13 +95,13 @@ public class ProductDetailPage {
 	}
 	public Boolean validateBackToProducts() {
 
-		return action.isDisplayed(driver, products);
+		return action.isDisplayed(getDriver(), products);
 
 	}
 	
 	public CartPage clickOnCart() {
 		action.click(cart, "Cart");
-		return new CartPage(driver);
+		return new CartPage();
 		
 	}
 

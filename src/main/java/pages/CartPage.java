@@ -9,12 +9,12 @@ import org.openqa.selenium.support.PageFactory;
 import actiondriver.Action;
 
 public class CartPage extends BaseClass {
-	WebDriver driver;
+	
 	Action action = new Action();
 
-	public CartPage(WebDriver driver) {
-		this.driver = driver;
-		PageFactory.initElements(driver, this);
+	public CartPage() {
+		
+		PageFactory.initElements(getDriver(), this);
 	}
 
 	@FindBy(xpath = "//span[@class='title']")
@@ -43,7 +43,7 @@ public class CartPage extends BaseClass {
 		
 		
 
-		return action.isDisplayed(driver, title);
+		return action.isDisplayed(getDriver(), title);
 
 	}
 
@@ -63,7 +63,7 @@ public class CartPage extends BaseClass {
 
 	// Get cart product title is present or not
 	public boolean cartproductTitle() {
-		boolean flag = action.isDisplayed(driver, cartProductTitle);
+		boolean flag = action.isDisplayed(getDriver(), cartProductTitle);
 		return flag;
 	}
 
@@ -97,7 +97,7 @@ public String validateContinueShipping() {
 public AddressPage clickOnChekout() {
 	action.click(checkout, "Checkout");
 	
-	return new AddressPage(driver);
+	return new AddressPage();
 }
 
 
